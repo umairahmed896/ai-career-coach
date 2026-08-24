@@ -28,7 +28,28 @@ export async function updateUser(data) {
 
         // If industry doesn't exist, create it with default values
         if (!industryInsight) {
-          const insights = await generateAIInsights(data.industry);
+          let insights;
+          try {
+            insights = await generateAIInsights(data.industry);
+          } catch (aiError) {
+            console.log("AI insights generation failed, using fallback data:", aiError.message);
+            // Fallback data when AI is not available
+            insights = {
+              salaryRanges: [
+                { role: "Junior", min: 40000, max: 60000, median: 50000, location: "Remote" },
+                { role: "Mid-level", min: 60000, max: 90000, median: 75000, location: "Remote" },
+                { role: "Senior", min: 90000, max: 130000, median: 110000, location: "Remote" },
+                { role: "Lead", min: 120000, max: 160000, median: 140000, location: "Remote" },
+                { role: "Manager", min: 150000, max: 200000, median: 175000, location: "Remote" },
+              ],
+              growthRate: 5,
+              demandLevel: "Medium",
+              topSkills: ["Communication", "Problem Solving", "Teamwork"],
+              marketOutlook: "Neutral",
+              keyTrends: ["Remote Work", "Digital Transformation", "Automation"],
+              recommendedSkills: ["Technical Skills", "Leadership", "Adaptability"],
+            };
+          }
 
           industryInsight = await db.industryInsight.create({
             data: {
