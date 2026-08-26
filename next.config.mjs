@@ -6,11 +6,23 @@ const nextConfig = {
         protocol: "https",
         hostname: "randomuser.me",
       },
+      {
+        protocol: "https",
+        hostname: "**.clerk.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.clerk.accounts.dev",
+      },
     ],
   },
   turbopack: {
     root: process.cwd(),
   },
+  // Fix for 404 errors on Vercel
+  trailingSlash: false,
+  // Ensure proper static generation
+  generateStaticParams: true,
 };
 
 export default nextConfig;
