@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { Button } from "./ui/button";
 import {
   PenBox,
@@ -17,10 +19,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import { checkUser } from "@/lib/checkUser";
 
-export default async function Header() {
-  await checkUser();
+export default function Header() {
+  useEffect(() => {
+    // Client-side only initialization
+  }, []);
 
   return (
     <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-50 supports-[backdrop-filter]:bg-background/60">
@@ -32,6 +35,7 @@ export default async function Header() {
             width={200}
             height={60}
             className="h-12 py-1 w-auto object-contain"
+            loading="eager"
           />
         </Link>
 
@@ -101,7 +105,7 @@ export default async function Header() {
                   userPreviewMainIdentifier: "font-semibold",
                 },
               }}
-              afterSignOutUrl="/"
+              fallbackRedirectUrl="/"
             />
           </SignedIn>
         </div>

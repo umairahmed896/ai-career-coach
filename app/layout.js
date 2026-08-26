@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { dark } from "@clerk/themes";
+import { checkUser } from "@/lib/checkUser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,16 +14,20 @@ export const metadata = {
   description: "",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  await checkUser();
+
   return (
     <ClerkProvider
       appearance={{
         baseTheme: dark,
       }}
+      fallbackRedirectUrl="/"
     >
       <html lang="en" suppressHydrationWarning>
         <head>
           <link rel="icon" href="/logo.png" sizes="any" />
+          <link rel="preload" href="/logo.png" as="image" />
         </head>
         <body className={`${inter.className}`}>
           <ThemeProvider
