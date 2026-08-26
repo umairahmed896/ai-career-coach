@@ -5,14 +5,14 @@
   "regions": ["iad1"],
   "installCommand": "npm install",
   "env": {
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "@clerk-publishable-key",
-    "CLERK_SECRET_KEY": "@clerk-secret-key",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_placeholder",
+    "CLERK_SECRET_KEY": "sk_test_placeholder",
     "NEXT_PUBLIC_CLERK_SIGN_IN_URL": "/sign-in",
     "NEXT_PUBLIC_CLERK_SIGN_UP_URL": "/sign-up",
     "NEXT_PUBLIC_CLERK_FALLBACK_REDIRECT_URL": "/dashboard",
     "NEXT_PUBLIC_CLERK_AFTER_SIGN_OUT_URL": "/",
-    "GOOGLE_GENERATIVE_AI_API_KEY": "@google-ai-api-key",
-    "DATABASE_URL": "@database-url"
+    "GOOGLE_GENERATIVE_AI_API_KEY": "placeholder_api_key",
+    "DATABASE_URL": "placeholder_database_url"
   },
   "rewrites": [
     {
